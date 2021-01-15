@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
 import { useContext } from 'react';
+
 import RouterContext from './routerContext';
 
 const usePage = () => {

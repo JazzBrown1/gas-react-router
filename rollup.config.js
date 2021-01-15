@@ -1,32 +1,19 @@
-import autoExternal from 'rollup-plugin-auto-external';
-import { getBabelOutputPlugin } from '@rollup/plugin-babel';
-import jsx from 'rollup-plugin-jsx'
- 
+import babel from '@rollup/plugin-babel';
+import external from 'rollup-plugin-peer-deps-external';
+import del from 'rollup-plugin-delete';
+import pkg from './package.json';
 
-module.exports = [{
-  external: ['path', 'fs'],
-  input: './src/bin.js',
-  output: {
-    banner: '#!/usr/bin/env node', // Add bin shebangs
-    file: 'dist/bin.js',
-    format: 'cjs',
-    plugins: [getBabelOutputPlugin({
-      presets: [
-        ['@babel/preset-env', {
-          targets: {
-            node: '10'
-          }
-        }]
-      ]
-    })]
-  },
-  plugins: [autoExternal()]
-},
-{
-  input: './src/entry.js',
-  output: {
-    file: 'dist/entry.js',
-    format: 'es',
-  },
-  plugins: [autoExternal()],
-}];
+export default {
+  input: './src/index.js',
+  output: [
+    { file: pkg.main, format: 'esm' },
+  ],
+  plugins: [
+    external(),
+    babel({
+      exclude: 'node_modules/**',
+    }),
+    del({ targets: ['dist/*'] }),
+  ],
+  external: ['react'],
+};

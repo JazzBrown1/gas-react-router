@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line import/no-unresolved
 import React, { useEffect, useState } from 'react';
 import RouterContext from './routerContext';
 
@@ -13,7 +14,7 @@ export default ({ children, loadScreen }) => {
         setCurrentPageParams({ page: location.hash, params: location.parameter, ready: true });
       });
     } catch (err) {
-      console.log('error!', err);
+      console.error(err);
     }
   }, [setCurrentPageParams]);
 
@@ -40,11 +41,10 @@ export default ({ children, loadScreen }) => {
   useEffect(() => {
     try {
       google.script.history.setChangeHandler((e) => {
-        console.log('page change', e);
         setCurrentPageParams({ page: e.location.hash, params: e.location.parameter, ready: true });
       });
     } catch (err) {
-      console.log('error!', err);
+      console.error(err);
     }
   }, [setCurrentPageParams]);
 
