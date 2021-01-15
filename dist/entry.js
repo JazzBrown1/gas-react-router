@@ -139,6 +139,7 @@ var Router = (function (_ref) {
 
   var updatePage = function updatePage(page) {
     var parameters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var replace = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     var params = _objectSpread2({}, parameters);
 
@@ -146,7 +147,7 @@ var Router = (function (_ref) {
     var state = {
       timestamp: now.getTime()
     };
-    google.script.history.push(state, params, page);
+    if (replace) google.script.history.replace(state, params, page);else google.script.history.push(state, params, page);
     setCurrentPageParams({
       page: page,
       params: params,
@@ -156,6 +157,7 @@ var Router = (function (_ref) {
 
   var updateParams = function updateParams() {
     var parameters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var replace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
     var params = _objectSpread2({}, parameters);
 
@@ -163,7 +165,7 @@ var Router = (function (_ref) {
     var state = {
       timestamp: now.getTime()
     };
-    google.script.history.push(state, params, currentPageParams.page);
+    if (replace) google.script.history.replace(state, params, currentPageParams.page);else google.script.history.push(state, params, currentPageParams.page);
     setCurrentPageParams({
       page: currentPageParams.page,
       params: params,

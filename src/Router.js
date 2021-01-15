@@ -18,23 +18,25 @@ export default ({ children, loadScreen }) => {
     }
   }, [setCurrentPageParams]);
 
-  const updatePage = (page, parameters = {}) => {
+  const updatePage = (page, parameters = {}, replace = false) => {
     const params = { ...parameters };
     const now = new Date();
     const state = {
       timestamp: now.getTime()
     };
-    google.script.history.push(state, params, page);
+    if (replace) google.script.history.replace(state, params, page);
+    else google.script.history.push(state, params, page);
     setCurrentPageParams({ page, params, ready: true });
   };
 
-  const updateParams = (parameters = {}) => {
+  const updateParams = (parameters = {}, replace = false) => {
     const params = { ...parameters };
     const now = new Date();
     const state = {
       timestamp: now.getTime()
     };
-    google.script.history.push(state, params, currentPageParams.page);
+    if (replace) google.script.history.replace(state, params, currentPageParams.page);
+    else google.script.history.push(state, params, currentPageParams.page);
     setCurrentPageParams({ page: currentPageParams.page, params, ready: true });
   };
 
