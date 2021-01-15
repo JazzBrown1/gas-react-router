@@ -1,0 +1,32 @@
+{
+  "name": "gas-react-router",
+  "version": "0.1.0",
+  "description": "Router for react-router",
+  "main": "dist/entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build": "rollup --config"
+  },
+  "author": "Jazz Brown",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@rollup/plugin-babel": "^5.1.0",
+    "babel": "^6.23.0",
+    "rollup": "^2.18.1",
+    "react": "^17.0.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JazzBrown1/gas-react-router.git"
+  },
+  "keywords": [
+    "gas",
+    "google app scripts",
+    "react",
+    "build",
+    "web app"
+  ]
+}
