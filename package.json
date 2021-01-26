@@ -1,6 +1,6 @@
 {
   "name": "gas-react-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Router for react-router",
   "main": "dist/entry.js",
   "scripts": {
